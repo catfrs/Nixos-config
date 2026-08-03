@@ -9,6 +9,11 @@
       self.nixosModules.pcHardware
       self.nixosModules.cursor
       self.nixosModules.zen
+      self.nixosModules.osu
+      self.nixosModules.tosu
+      self.nixosModules.osumania-map-analyser
+      self.nixosModules.maniaMapAnalyserApp
+      self.nixosModules.roxysu
     ];
 
      environment.shellAliases = {
@@ -16,7 +21,17 @@
       nt = "sudo nixos-rebuild test --flake ~/yuri#pc";
       nb = "sudo nixos-rebuild build --flake ~/yuri#pc";
     };
-
+     
+    programs =  {
+      osu.enable = true;
+      tosu.enable = true;
+      tosuPlugins.maniaMapAnalyser = {
+            enable = true;
+            user = "catfr";
+      };
+      firefox.enable = true;
+    }
+    maniaMapAnalyserApp.enable = true;
     networking.hostName = "nixos"; # Define your hostname.
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -94,7 +109,6 @@
         vesktop
         steam
         protonup-qt
-        osu-lazer-bin
         prismlauncher
         heroic
         krita

@@ -310,7 +310,7 @@
       user = lib.mkOption {
         type = lib.types.str;
         description = "The user account whose ~/.local/share/tosu/static/ the plugin should be linked into.";
-        example = "yonluc";
+        example = "catfr";
       };
     };
     config = lib.mkIf config.programs.tosuPlugins.maniaMapAnalyser.enable (

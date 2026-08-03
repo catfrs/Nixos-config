@@ -87,6 +87,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1784356753,
+        "narHash": "sha256-12KrbMiWLcf8m7pCvAtZh1ZrgF85ZXDXvfR/fWTKy84=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "61b7c44c4073f0b827768aff0049561b5110ea5a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1780336545,
         "narHash": "sha256-vhVhuXzFrIOfcssC/9hDHx7MHzDKjF3keHuREOQqQiQ=",
         "owner": "NixOS",
@@ -106,13 +122,32 @@
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",
+        "roxysu": "roxysu",
         "wrapper-modules": "wrapper-modules",
         "zen-browser": "zen-browser"
       }
     },
-    "wrapper-modules": {
+    "roxysu": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1785780214,
+        "narHash": "sha256-mVeoNIrhDhvSw7SmOcJP1xLlef1RYX4SnJ3GLlxk+uw=",
+        "owner": "Yon-Luc",
+        "repo": "Roxysu",
+        "rev": "169a49689b6dbce9963855ca365429d30ae9cfcf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Yon-Luc",
+        "repo": "Roxysu",
+        "type": "github"
+      }
+    },
+    "wrapper-modules": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1782135443,
