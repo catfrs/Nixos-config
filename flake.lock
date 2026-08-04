@@ -132,11 +132,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1785780214,
-        "narHash": "sha256-mVeoNIrhDhvSw7SmOcJP1xLlef1RYX4SnJ3GLlxk+uw=",
+        "lastModified": 1785788855,
+        "narHash": "sha256-i+PVE/ldvhJsGsnw9T1gE0B+lYohdnaCy99MtrT3Yu0=",
         "owner": "Yon-Luc",
         "repo": "Roxysu",
-        "rev": "169a49689b6dbce9963855ca365429d30ae9cfcf",
+        "rev": "a7f17bba71b5b1c29323e7129cdc1b0c6c8f7374",
         "type": "github"
       },
       "original": {

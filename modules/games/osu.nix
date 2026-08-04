@@ -1,10 +1,14 @@
-{self, ...}: {
+{self,inputs, ...}: {
   perSystem = {
     pkgs,
     lib,
     system,
     ...
   }: {
+    _module.args.pkgs = import inputs.nixpkgs {
+  inherit system;
+  config.allowUnfree = true;
+  };
     packages.osu = let
       pname = "osu-lazer-bin";
       version = "2026.726.0";

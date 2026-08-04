@@ -4,6 +4,10 @@
     config,
     ...
   }: {
+
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+    
     imports = [
       # Include the results of the hardware scan.
       self.nixosModules.pcHardware
@@ -15,6 +19,8 @@
       self.nixosModules.maniaMapAnalyserApp
       self.nixosModules.roxysu
     ];
+
+
 
      environment.shellAliases = {
       ns = "sudo nixos-rebuild switch --flake ~/yuri#pc";
@@ -30,8 +36,8 @@
             user = "catfr";
       };
       firefox.enable = true;
-    }
-    maniaMapAnalyserApp.enable = true;
+      maniaMapAnalyserApp.enable = true;
+    };
     networking.hostName = "nixos"; # Define your hostname.
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -123,11 +129,9 @@
 
     hardware.opentabletdriver.enable = true;
 
-    # Install firefox..
-    programs.firefox.enable = true;
 
-    # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
+
+
 
     environment.systemPackages = with pkgs; [
       fastfetch
@@ -228,7 +232,11 @@
     };
 
     hardware.nvidia.prime = {
-      sync.enable = true;
+      # sync.enable = true;
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
       # Make sure to use the correct Bus ID values for your system!
       amdgpuBusId = "PCI:1:0:0";
       nvidiaBusId = "PCI:6:0:0";
