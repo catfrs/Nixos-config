@@ -54,6 +54,19 @@
         "type": "github"
       }
     },
+    "linux-resources": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787168148,
+        "narHash": "sha256-N+wbUycJm8wkdYtMIowJr7lr6f94MR9ou/V4CzUfkPg=",
+        "type": "tarball",
+        "url": "https://github.com/Yon-Luc/Roxysu/releases/download/v0.1.12/Roxysu-0.1.12-linux-x64-resources.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/Yon-Luc/Roxysu/releases/download/v0.1.12/Roxysu-0.1.12-linux-x64-resources.tar.gz"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1785571196,
@@ -129,14 +142,15 @@
     },
     "roxysu": {
       "inputs": {
+        "linux-resources": "linux-resources",
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1785788855,
-        "narHash": "sha256-i+PVE/ldvhJsGsnw9T1gE0B+lYohdnaCy99MtrT3Yu0=",
+        "lastModified": 1787168521,
+        "narHash": "sha256-Q94pTz/jmZiErcvYpPveUiO7IUnqv4tElY2/sQTNbyI=",
         "owner": "Yon-Luc",
         "repo": "Roxysu",
-        "rev": "a7f17bba71b5b1c29323e7129cdc1b0c6c8f7374",
+        "rev": "1656cafaa165b3c10636c707706303c0c19be937",
         "type": "github"
       },
       "original": {

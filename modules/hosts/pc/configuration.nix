@@ -38,7 +38,13 @@
       firefox.enable = true;
       maniaMapAnalyserApp.enable = true;
     };
-    networking.hostName = "nixos"; # Define your hostname.
+    networking = {
+      hostName = "nixos";# Define your hostname.
+      firewall = {
+          allowedTCPPorts = [ 9757 ];
+          allowedUDPPorts = [ 9757 ];
+      };
+    };
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Configure network proxy if necessary
@@ -68,7 +74,7 @@
 
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
-    services.xserver.enable = false;
+    services.xserver.enable = true;
 
     # Enable the KDE Plasma Desktop Environment.
     services.displayManager.sddm.enable = true;
@@ -85,6 +91,17 @@
 
     # Enable CUPS to print documents.
     services.printing.enable = true;
+
+    services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+        publish = {
+            enable = true;
+            addresses = true;
+            userServices = true;
+        };
+    };
 
     # Enable sound with pipewire.
     services.pulseaudio.enable = false;
@@ -122,12 +139,25 @@
         spotify
         git
         vscode-fhs
+        parsec-bin
+        scrcpy
+        wayvr
+        wivrn
+        alcom
+        olympus
+        obs-studio
       ];
     };
+
+    security.unprivilegedUsernsClone = true;
+
+
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
 
     hardware.opentabletdriver.enable = true;
+    hardware.bluetooth.enable = true;
+
 
 
 
@@ -232,14 +262,10 @@
     };
 
     hardware.nvidia.prime = {
-      # sync.enable = true;
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
+      sync.enable = true;
       # Make sure to use the correct Bus ID values for your system!
-      amdgpuBusId = "PCI:1:0:0";
-      nvidiaBusId = "PCI:6:0:0";
+      amdgpuBusId = "PCI:6:0:0";
+      nvidiaBusId = "PCI:1:0:0";
       # amdgpuBusId = "PCI:54:0:0"; For AMD GPU
     };
 

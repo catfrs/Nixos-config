@@ -1,4 +1,8 @@
-{self,inputs, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   perSystem = {
     pkgs,
     lib,
@@ -6,18 +10,18 @@
     ...
   }: {
     _module.args.pkgs = import inputs.nixpkgs {
-  inherit system;
-  config.allowUnfree = true;
-  };
+      inherit system;
+      config.allowUnfree = true;
+    };
     packages.osu = let
       pname = "osu-lazer-bin";
-      version = "2026.726.0";
+      version = "2026.804.2";
       nativeWayland = false;
       src =
         {
           x86_64-linux = pkgs.fetchurl {
             url = "https://github.com/ppy/osu/releases/download/${version}-lazer/osu.AppImage";
-            hash = "sha256-PTAoYJVD3/0DewBlJgP3WShRUQC2JFvJKancRv07KaA=";
+            hash = "sha256-0K/dyvIwrlBzcexYDCCilNknJdEZja1OTfAotP6MvjY=";
           };
         }.${
           system
@@ -53,7 +57,7 @@
       else
         pkgs.appimageTools.wrapType2 {
           inherit pname version src meta;
-          extraPkgs = p: with p; [icu];
+          extraPkgs = p: with p; [icu vulkan-loader];
           extraInstallCommands = let
             contents = pkgs.appimageTools.extract {inherit pname version src;};
           in ''
@@ -61,7 +65,9 @@
             mv -v $out/bin/${pname} $out/bin/osu!
             wrapProgram $out/bin/osu! \
               ${lib.optionalString nativeWayland "--set SDL_VIDEODRIVER wayland"} \
-              --set OSU_EXTERNAL_UPDATE_PROVIDER 1
+              --set OSU_EXTERNAL_UPDATE_PROVIDER 1 \
+              --set __GLX_VENDOR_LIBRARY_NAME nvidia \
+              --set __VK_ICD_FILENAMES /run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json
             install -m 444 -D ${contents}/osu!.desktop -t $out/share/applications
             for i in 16 32 48 64 96 128 256 512 1024; do
               install -D ${contents}/osu.png $out/share/icons/hicolor/''${i}x$i/apps/osu.png
