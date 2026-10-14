@@ -57,14 +57,14 @@
     "linux-resources": {
       "flake": false,
       "locked": {
-        "lastModified": 1787168148,
-        "narHash": "sha256-N+wbUycJm8wkdYtMIowJr7lr6f94MR9ou/V4CzUfkPg=",
+        "lastModified": 1790780643,
+        "narHash": "sha256-Vrcljph45ILRCb5MizBxvuoru2dSWaPip5TipLg58D0=",
         "type": "tarball",
-        "url": "https://github.com/Yon-Luc/Roxysu/releases/download/v0.1.12/Roxysu-0.1.12-linux-x64-resources.tar.gz"
+        "url": "https://github.com/Yon-Luc/Roxysu/releases/download/v0.1.16/Roxysu-0.1.16-linux-x64-resources.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/Yon-Luc/Roxysu/releases/download/v0.1.12/Roxysu-0.1.12-linux-x64-resources.tar.gz"
+        "url": "https://github.com/Yon-Luc/Roxysu/releases/download/v0.1.16/Roxysu-0.1.16-linux-x64-resources.tar.gz"
       }
     },
     "nixpkgs": {
@@ -146,11 +146,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1787168521,
-        "narHash": "sha256-Q94pTz/jmZiErcvYpPveUiO7IUnqv4tElY2/sQTNbyI=",
+        "lastModified": 1791283880,
+        "narHash": "sha256-MvOa2dLHZJaGIMl+rexuURYzdRZgzqiy+uregemFvw8=",
         "owner": "Yon-Luc",
         "repo": "Roxysu",
-        "rev": "1656cafaa165b3c10636c707706303c0c19be937",
+        "rev": "678ac864fb8008ed452ee5f4a4a735e8e1ba1c51",
         "type": "github"
       },
       "original": {

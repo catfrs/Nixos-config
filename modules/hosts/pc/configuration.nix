@@ -41,7 +41,7 @@
     networking = {
       hostName = "nixos";# Define your hostname.
       firewall = {
-          allowedTCPPorts = [ 9757 ];
+          allowedTCPPorts = [ 9757 6450 4321];
           allowedUDPPorts = [ 9757 ];
       };
     };
@@ -146,11 +146,21 @@
         alcom
         olympus
         obs-studio
+        mpc-qt
+        teamspeak_server
+        teamspeak6-client
+        opencode
+        bun
+        nodejs
+        chromium
+        linux-wallpaperengine
+        wootility
+        melonloader-installer
       ];
     };
 
     security.unprivilegedUsernsClone = true;
-
+    services.tailscale.enable = true;
 
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
