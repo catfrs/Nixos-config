@@ -7,6 +7,7 @@
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
     roxysu.url = "github:Yon-Luc/Roxysu";
+    inputs.osu-stable-nixos.url = "github:MiPSR/osu-stable-nixos";
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";

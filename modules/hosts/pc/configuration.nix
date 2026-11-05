@@ -18,6 +18,7 @@
       self.nixosModules.osumania-map-analyser
       self.nixosModules.maniaMapAnalyserApp
       self.nixosModules.roxysu
+      self.nixosModules.taiko-rs
     ];
 
 
@@ -37,6 +38,7 @@
       };
       firefox.enable = true;
       maniaMapAnalyserApp.enable = true;
+      taiko-rs.enable = true;
     };
     networking = {
       hostName = "nixos";# Define your hostname.
@@ -156,10 +158,11 @@
         linux-wallpaperengine
         wootility
         melonloader-installer
+        inputs.osu-stable-nixos.packages.x86_64-linux.default
       ];
     };
 
-    security.unprivilegedUsernsClone = true;
+
     services.tailscale.enable = true;
 
 
