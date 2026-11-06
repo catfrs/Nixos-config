@@ -75,6 +75,42 @@
             done
           '';
         };
+    packages.osufix = let
+      osu = self.packages.${system}.osu;
+    in
+      pkgs.stdenvNoCC.mkDerivation {
+        pname = "osufix";
+        version = osu.version;
+        dontUnpack = true;
+        dontBuild = true;
+        nativeBuildInputs = [pkgs.makeWrapper pkgs.copyDesktopItems];
+        desktopItems = [
+          (pkgs.makeDesktopItem {
+            name = "osufix";
+            desktopName = "osufix";
+            exec = "osufix";
+            icon = "osu";
+            comment = "osu!lazer launcher that prefers the NVIDIA dGPU on hybrid systems (Wayland)";
+            categories = ["Game"];
+            type = "Application";
+          })
+        ];
+        installPhase = ''
+          runHook preInstall
+          mkdir -p $out/bin
+          makeWrapper ${lib.getExe' osu "osu!"} $out/bin/osufix \
+            --set __NV_PRIME_RENDER_OFFLOAD 1 \
+            --set __VK_LAYER_NV_optimus NVIDIA_only \
+            --set VK_ICD_FILENAMES /run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json \
+            --set VK_DRIVER_FILES /run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json
+          runHook postInstall
+        '';
+        meta = {
+          description = "osu!lazer launcher that prefers the NVIDIA dGPU on hybrid systems (Wayland)";
+          mainProgram = "osufix";
+          platforms = ["x86_64-linux"];
+        };
+      };
     packages.tosu = let
       pname = "tosu";
       version = "4.25.1";
@@ -302,12 +338,15 @@
         default = false;
         description = "Enable native Wayland support via SDL_VIDEODRIVER";
       };
+      osufix.enable = lib.mkEnableOption "osu!lazer launcher that prefers the NVIDIA dGPU on hybrid systems (Wayland, osufix)";
     };
 
     config = lib.mkIf config.programs.osu.enable {
-      environment.systemPackages = [
-        self.packages.${pkgs.stdenv.hostPlatform.system}.osu
-      ];
+      environment.systemPackages =
+        [self.packages.${pkgs.stdenv.hostPlatform.system}.osu]
+        ++ lib.optionals config.programs.osu.osufix.enable [
+          self.packages.${pkgs.stdenv.hostPlatform.system}.osufix
+        ];
     };
   };
   flake.nixosModules.osumania-map-analyser = {
