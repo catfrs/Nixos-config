@@ -1,4 +1,4 @@
-{self, ...}: {
+{self, inputs, ...}: {
   flake.nixosModules.pcConfiguration = {
     pkgs,
     config,
@@ -23,18 +23,23 @@
 
 
 
-     environment.shellAliases = {
+    environment.shellAliases = {
+      cln = "sudo nix-collect-garbage -d && sudo nix-store --optimise";
+      nf = "(cd ~/yuri && nix flake update)";
       ns = "sudo nixos-rebuild switch --flake ~/yuri#pc";
       nt = "sudo nixos-rebuild test --flake ~/yuri#pc";
       nb = "sudo nixos-rebuild build --flake ~/yuri#pc";
     };
      
-    programs =  {
-      osu.enable = true;
+    programs = {
+      osu = {
+        enable = true;
+        osufix.enable = true;
+      };
       tosu.enable = true;
       tosuPlugins.maniaMapAnalyser = {
-            enable = true;
-            user = "catfr";
+        enable = true;
+        user = "catfr";
       };
       firefox.enable = true;
       maniaMapAnalyserApp.enable = true;
@@ -95,14 +100,14 @@
     services.printing.enable = true;
 
     services.avahi = {
-        enable = true;
-        nssmdns4 = true;
-        openFirewall = true;
-        publish = {
-            enable = true;
-            addresses = true;
-            userServices = true;
-        };
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+      settings.publish = {
+        "disable-publishing" = false;
+        "disable-user-service-publishing" = false;
+        "publish-addresses" = true;
+      };
     };
 
     # Enable sound with pipewire.
@@ -151,7 +156,7 @@
         mpc-qt
         teamspeak_server
         teamspeak6-client
-        opencode
+        # opencode
         bun
         nodejs
         chromium
@@ -184,12 +189,8 @@
     # MIPS
     boot = {
       consoleLogLevel = 3;
+      kernelModules = ["uinput"];
       kernelPackages = pkgs.linuxPackages_zen;
-
-      initrd = {
-        systemd.enable = true;
-        verbose = false;
-      };
 
       kernel.sysctl = {
         "vm.swappiness" = 10;

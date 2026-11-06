@@ -100,6 +100,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1792502884,
+        "narHash": "sha256-IoNisKcGbUjdd45qCqywGMCYmZ5EnkxezvLII0FWwNA=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "02c087f3fe673c9e317f206a627cb6b910336dbe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1793540411,
         "narHash": "sha256-fiPJ88izTVucjeo2EQ3jk4aWmLg03I1D4vxnX2QjEgE=",
         "owner": "NixOS",
@@ -114,7 +130,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1793225069,
         "narHash": "sha256-sx1f99WGrDfJ83KKuQrqGPmot0rnDgmpLJDzpU2oHQQ=",
@@ -130,11 +146,30 @@
         "type": "github"
       }
     },
+    "osu-stable-nixos": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1792887010,
+        "narHash": "sha256-q4psfKUG1kR4nhVodD2jd55/ovklm48I1IWf3eirKuI=",
+        "owner": "MiPSR",
+        "repo": "osu-stable-nixos",
+        "rev": "d040345754840fbe780de99ca504fc16b817d2c7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MiPSR",
+        "repo": "osu-stable-nixos",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "nixpkgs": "nixpkgs",
+        "osu-stable-nixos": "osu-stable-nixos",
         "roxysu": "roxysu",
         "wrapper-modules": "wrapper-modules",
         "zen-browser": "zen-browser"
@@ -143,7 +178,7 @@
     "roxysu": {
       "inputs": {
         "linux-resources": "linux-resources",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1793723688,
@@ -161,7 +196,7 @@
     },
     "wrapper-modules": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1793856116,
