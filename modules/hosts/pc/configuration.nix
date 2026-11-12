@@ -164,6 +164,9 @@
         wootility
         melonloader-installer
         inputs.osu-stable-nixos.packages.x86_64-linux.default
+        qemu
+        OVMF
+        bs-manager
       ];
     };
 

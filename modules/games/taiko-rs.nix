@@ -9,7 +9,7 @@
       version = "cd169d3";
       src = pkgs.fetchurl {
         url = "https://github.com/Lynerrr/taiko-rs/releases/download/latest/taiko-rs-linux-x64.tar.gz";
-        hash = "sha256-WQy5calg0Uc6s79JGKr+UgoQWq8RLPFB53dMBLs9iXw=";
+        hash = "sha256-lTEA8opYXGY5rYH1tMqtC9GMiKCpH8Q1CBmy/ccNxVQ=";
       };
       # winit/wgpu dlopen these at runtime; autoPatchelf only covers DT_NEEDED.
       runtimeLibs = with pkgs; [
