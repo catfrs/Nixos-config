@@ -11,7 +11,7 @@
     imports = [
       # Include the results of the hardware scan.
       self.nixosModules.pcHardware
-      self.nixosModules.cursor
+      # self.nixosModules.cursor
       self.nixosModules.zen
       self.nixosModules.osu
       self.nixosModules.tosu
@@ -145,7 +145,7 @@
         pinta
         spotify
         git
-        vscode-fhs
+        # vscode-fhs
         parsec-bin
         scrcpy
         wayvr
@@ -156,7 +156,7 @@
         mpc-qt
         teamspeak_server
         teamspeak6-client
-        # opencode
+        opencode
         bun
         nodejs
         chromium
@@ -167,9 +167,15 @@
         qemu
         OVMF
         bs-manager
+        signal-desktop
       ];
     };
 
+
+    programs.appimage = {
+      enable = true;
+      binfmt = true;
+    };
 
     services.tailscale.enable = true;
 
