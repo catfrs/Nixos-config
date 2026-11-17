@@ -9,10 +9,6 @@
     system,
     ...
   }: {
-    _module.args.pkgs = import inputs.nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
     packages.osu = let
       pname = "osu-lazer-bin";
       version = "2026.1115.0";
@@ -22,7 +18,6 @@
           x86_64-linux = pkgs.fetchurl {
             url = "https://github.com/ppy/osu/releases/download/${version}-lazer/osu.AppImage";
             hash = "sha256-ROqHd7gjAHqg7bibdOF/V7BpiomsAXdH9ysBE1Me754=";
-
           };
         }.${
           system

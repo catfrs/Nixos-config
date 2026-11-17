@@ -1,13 +1,16 @@
-{self, inputs, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   flake.nixosModules.pcConfiguration = {
     pkgs,
     config,
     ...
   }: {
-
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
-    
+
     imports = [
       # Include the results of the hardware scan.
       self.nixosModules.pcHardware
@@ -22,8 +25,6 @@
       self.nixosModules.vr
     ];
 
-
-
     environment.shellAliases = {
       cln = "sudo nix-collect-garbage -d && sudo nix-store --optimise";
       nf = "(cd ~/yuri && nix flake update)";
@@ -31,7 +32,7 @@
       nt = "sudo nixos-rebuild test --flake ~/yuri#pc";
       nb = "sudo nixos-rebuild build --flake ~/yuri#pc";
     };
-     
+
     programs = {
       osu = {
         enable = true;
@@ -47,7 +48,7 @@
       taiko-rs.enable = true;
     };
     networking = {
-      hostName = "nixos";# Define your hostname.
+      hostName = "nixos"; # Define your hostname.
       firewall.allowedTCPPorts = [6450 4321];
     };
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -135,7 +136,6 @@
         # vscode-fhs
         parsec-bin
         scrcpy
-        wayvr
         alcom
         olympus
         obs-studio
@@ -157,7 +157,6 @@
       ];
     };
 
-
     programs.appimage = {
       enable = true;
       binfmt = true;
@@ -165,16 +164,10 @@
 
     services.tailscale.enable = true;
 
-
     nix.settings.experimental-features = ["nix-command" "flakes"];
 
     hardware.opentabletdriver.enable = true;
     hardware.bluetooth.enable = true;
-
-
-
-
-
 
     environment.systemPackages = with pkgs; [
       fastfetch
