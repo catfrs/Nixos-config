@@ -19,6 +19,7 @@
       self.nixosModules.maniaMapAnalyserApp
       self.nixosModules.roxysu
       self.nixosModules.taiko-rs
+      self.nixosModules.vr
     ];
 
 
@@ -47,10 +48,7 @@
     };
     networking = {
       hostName = "nixos";# Define your hostname.
-      firewall = {
-          allowedTCPPorts = [ 9757 6450 4321];
-          allowedUDPPorts = [ 9757 ];
-      };
+      firewall.allowedTCPPorts = [6450 4321];
     };
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -99,17 +97,6 @@
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
-    services.avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-      settings.publish = {
-        "disable-publishing" = false;
-        "disable-user-service-publishing" = false;
-        "publish-addresses" = true;
-      };
-    };
-
     # Enable sound with pipewire.
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;
@@ -149,7 +136,6 @@
         parsec-bin
         scrcpy
         wayvr
-        wivrn
         alcom
         olympus
         obs-studio
