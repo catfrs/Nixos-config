@@ -1,13 +1,16 @@
-{self, inputs, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   flake.nixosModules.pcConfiguration = {
     pkgs,
     config,
     ...
   }: {
-
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
-    
+
     imports = [
       # Include the results of the hardware scan.
       self.nixosModules.pcHardware
@@ -19,9 +22,8 @@
       self.nixosModules.maniaMapAnalyserApp
       self.nixosModules.roxysu
       self.nixosModules.taiko-rs
+      self.nixosModules.vr
     ];
-
-
 
     environment.shellAliases = {
       cln = "sudo nix-collect-garbage -d && sudo nix-store --optimise";
@@ -30,7 +32,7 @@
       nt = "sudo nixos-rebuild test --flake ~/yuri#pc";
       nb = "sudo nixos-rebuild build --flake ~/yuri#pc";
     };
-     
+
     programs = {
       osu = {
         enable = true;
@@ -46,11 +48,8 @@
       taiko-rs.enable = true;
     };
     networking = {
-      hostName = "nixos";# Define your hostname.
-      firewall = {
-          allowedTCPPorts = [ 9757 6450 4321];
-          allowedUDPPorts = [ 9757 ];
-      };
+      hostName = "nixos"; # Define your hostname.
+      firewall.allowedTCPPorts = [6450 4321];
     };
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -99,17 +98,6 @@
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
-    services.avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-      settings.publish = {
-        "disable-publishing" = false;
-        "disable-user-service-publishing" = false;
-        "publish-addresses" = true;
-      };
-    };
-
     # Enable sound with pipewire.
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;
@@ -148,8 +136,6 @@
         # vscode-fhs
         parsec-bin
         scrcpy
-        wayvr
-        wivrn
         alcom
         olympus
         obs-studio
@@ -174,7 +160,6 @@
       ];
     };
 
-
     programs.appimage = {
       enable = true;
       binfmt = true;
@@ -182,16 +167,10 @@
 
     services.tailscale.enable = true;
 
-
     nix.settings.experimental-features = ["nix-command" "flakes"];
 
     hardware.opentabletdriver.enable = true;
     hardware.bluetooth.enable = true;
-
-
-
-
-
 
     environment.systemPackages = with pkgs; [
       fastfetch

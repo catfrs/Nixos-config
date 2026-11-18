@@ -81,12 +81,6 @@
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      code-cursor-fhs
-      nixd
-      alejandra
-    ];
-
     extensions =
       (with pkgs.vscode-extensions; [
         adpyke.codesnap
