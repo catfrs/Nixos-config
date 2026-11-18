@@ -168,6 +168,9 @@
         OVMF
         bs-manager
         signal-desktop
+        alcom
+        unityhub
+        nix-ld
       ];
     };
 
